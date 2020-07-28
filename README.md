@@ -2,10 +2,9 @@
 
 <img src="https://picjumbo.com/wp-content/uploads/white-tir-truck-in-motion-driving-on-highway_free_stock_photos_picjumbo_DSC04205-1080x720.jpg" class="img-responsive" width="50%" height="50%"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Luftaufnahmen_Nordseekueste_2013_05_by-RaBoe_tele_46.jpg" class="img-responsive" width="50%" height="50%">
 
-## Tujuan Tugas
-1. Review materi pathfinding pada mata kuliah Strategi Algoritma.
-2. Mengenal multiple-agent TSP.
-3. Melakukan visualisasi data.
+Oleh :
+* Felicia Gillian Tekad Tuerah
+* 13518070
 
 ## Deskripsi Masalah
 Welcome to **Oldenburg** ! Kota kecil cantik ini merupakan sebuah kota kecil di barat lau kota Bremen , Jerman , dengan penduduk kurang lebih 168 ribu jiwa [2018]. Kota kecil ini cocok menjadi lahan uji coba untuk melakukan pemodelan sederhana pembuatan rute pengantaran logistik.<br>
@@ -18,50 +17,32 @@ Masalah pengantaran barang untuk satu kendaraan dengan fungsi objektif jarak min
 Kita akan menggunakan dataset jalanan pada kota Oldenburg yang dapat diakses pada <a href="https://www.cs.utah.edu/~lifeifei/SpatialDataset.htm">tautan ini.</a> Lakukan pengunduhan untuk kedua data jalanan di kota Oldenburg. Data pertama merupakan koordinat simpul, data kedua merupakan data sisi antar simpul. Asumsikan seluruh jalan dua arah.<br> 
 Seperti yang disebutkan sebelumnya, kita akan menggunakan pendekatan mTSP dalam permasalahan ini. Untuk mempermudah anda dan mempermudah penilaian, tugas akan dibagi dalam beberapa tahap.
 
-### Milestone 1
-Pada milestone 1, anda diminta untuk membangun sebuah upagraf dari graf jalan keseluruhan kota Oldenburg. Upagraf tersebut merupakan sebuah graf lengkap tak berarah, dengan simpul-simpulnya adalah titik tujuan pengiriman barang ditambah titik yang mewakili kantor pusat perusahaan logistik. Simpul-simpul tersebut merupakan masukan program yang dimasukkan oleh pengguna, dengan format masukan bebas. Hasilkan sebuah matriks jarak antar simpul upagraf lengkap. Nilai untuk milestone pertama maksimal adalah **600**.
+## Library
+Dalam menyelesaikan tugas ini, saya menggunakan beberapa library yakni:
+1. **networkx** (untuk menggambar simpul dan sisi dari upagraf)
+2. **matplotlib** (untuk menampilkan gambar graf )
 
-### Milestone 2
-Pada Milestone 2 , anda akan menggunakan upagraf yang telah dihasilkan pada Milestone 1 untuk membangun rute dari para kurir dengan pendekatan mTSP. Tampilkan rute yang diambil oleh tiap kurir. Nilai maksimal pada milestone kedua adalah **1500**
+Sebelum menjalankan program, yang perlu disiapkan adalah :
+1. [Python 3.0 or above](https://www.python.org/)
+2. Networkx
+```
+pip install networkx
+```
+3. Matplotlib
+```
+pip install matplotlib
+```
 
-### Milestone 3
-Setelah berhasil mendapatkan rute bagi para kurir, selanjutnya anda diminta untuk menggambarkan rute dari para kurir. Visualisasi rute  minimal membedakan warna rute untuk tiap kurir dan menampilkan upagraf yang digunakan untuk membuat rute. Nilai lebih akan diberikan jika anda dapat menampilkan rute beserta seluruh peta jalan di kota Oldenburg. Nilai minimal adalah **800** dan nilai maksimal adalah **1500**
+Cara menjalankan program cukup mudah yakni :
+1. Buka folder tempat kode disimpan
+2. Menjalankan kode main dari kode sumber di terminal
+```
+py main.py
+```
+3. Kemudian, ikuti instruksi dari program
 
-## Pengerjaan
-Tugas ini individual.<br>
-Lakukan *fork* terhadap *repository* ini.<br>
-Spek tugas cukup umum, sehingga asisten tidak membatasi algoritma maupun bahasa pemrograman yang digunakan, walaupun **penggunaan Python disarankan**. Algoritma yang digunakan untuk pathfinding harus optimal, namun hasil dari mTSP tidak harus optimal (*Note : beberapa pustaka optimization bisa menghasilkan solusi sub-optimal dalam batas waktu tertentu*). Bila merasa sudah menyelesaikan tugas, silahkan lakukan pull request dan hubungi asisten lewat email untuk melakukan demo.<br>
-Pastikan ada menambahkan/menggati README ini saat mengumpulkan. README minimal mengandung :
-
-1. Pendekatan algoritma yang digunakan untuk pathfinding dan penyelesaian mTSP, serta 
-2. Cara menjalankan program, termasuk instalasi pustaka bila menggunakan bermacam pustaka
-
-Anda bebas menggunakan pustaka maupun referensi apapun untuk mengerjakan tugas, kecuali kode/pustaka jadi yang melakukan *routing*, karena tujuan tugas adalah membuat sebuah prototipe pembuatan rute. Pastikan anda mencantumkan sumber bilamana anda menggunakan kode dari orang lain. Akan tetapi, pemahaman terhadap solusi masalah menjadi bagian penting dari penilaian , sehingga anda disarankan untuk menuliskan kode anda sendiri.<br>
-
-## Penilaian
-Nilai maksimal non-bonus adalah **4200**. Penilaian akan dilakukan berdasarkan : 
-1. kode sumber,
-2. pendekatan solusi, 
-2. demo aplikasi dan ,
-3. pemahaman terhadap solusi masalah.
-
-Untuk poin (1) dan poin (2) , nilai maksimal adalah **3600** dari ketiga milestone.<br> 
-Demo hanya dapat dilakukan sekali. Demo bernilai **600** poin. Pada demo, anda akan menunjukkan hasil aplikasi dan akan terdapat tanya jawab untuk menguji pemahaman.<br>
-Asisten juga akan menjalankan **plagiarism checking** antar kode sumber peserta. Bila ditemukan adanya kecurangan, maka nilai peserta bersangkutan adalah 0 tanpa pengubahan, dan pengurangan poin maksimal tidak akan berlaku. Perhatikan bahwa selama anda mencantumkan asal kode yang anda salin , tidak menggunakan pustaka untuk *routing* dan tidak menyalin kode milik teman anda, anda tidak akan mendapat masalah.
-
-## Bonus
-Bonus **300** poin diberikan jika anda dapat mengirimkan hasil algoritma beserta beberapa contoh masukan/keluaran untuk kasus kota San Francisco , dengan jumlah jalanan yang lebih besar dari Kota Oldenburg. Dataset dapat diambil di website yang sama.
-
-## Kontak
-Silahkan hubungi asisten lewat line @alamhasabiebaru atau lewat email 13517096@std.stei.itb.ac.id dengan subjek diawal tulisan \[SELEKSI IRK\] . *Note : waktu menjawab bervariasi, namun email biasanya akan dibalas kurang dari sehari. Line mungkin tidak dibalas dalam waktu satu-dua hari. Mohon bersabar :)*. Pertanyaan juga dipersilahkan. Jawaban akan diposting dalam bagian QnA README ini.
-
-## QnA
-- Bagaimana penentuan upagraf ? Apakah bebas oleh developer ?<br>
-Upagraf dibangun dari masukan simpul-simpul tujuan dan simpul kantor pusat. Masukan tersebut berasal dari pengguna, namun developer bebas menentukan format masukan simpul.
-- Bagaimana cara menghitung jarak dua simpul pada upagraf ? Apakah menggunakan jarak koordinat kedua simpul atau menggunakan data jalan, walaupun kedua simpul tidak bertetangga ?<br>
-Tentunya kendaraan kurir bergerak di atas jalanan, tidak bergerak lurus antara du simpul :)  Selain itu, sebuah simpul dapat mencapai simpul lainnya dengan menelusuri jalan. Lakukan penelusuran untuk mendapatkan jaraknya. 
-- Apakah program menggunakan GUI atau command-based ?<br>
-Dibebaskan.
+## Pendekatan Algoritma
+Algoritma dibuat dengan menggunakan prinsip backtracking dan rekursif untuk memperoleh jarak terpendek dari simpul satu ke simpul lainnya. Algoritma ini digunakan untuk memperoleh upagraf dan matriks jarak dari beberapa kota tujuan dan kantor pusat terlebih dahulu. Syarat dari algoritma ini adalah tidak boleh ada kota yang terlewati dua kali. Kemudian, untuk penyelesaian mTSP dilakukan iterasi tiap kurir dan kota tujuan yang ingin didatangi. Kemudian jalur diperoleh dengan memanfaatkan matriks jarak upagraf yang telah dibentuk sebelumnya.
 
 ## Referensi
 Silahkan gunakan referensi berikut sebagai awal pengerjaan tugas:<br>
@@ -74,5 +55,3 @@ Silahkan gunakan referensi berikut sebagai awal pengerjaan tugas:<br>
 ## Credits
 Thank you for Li Fei Fei et. al. for providing the data.
 
-## Final Words
-Akhir Kata, selamat bersenang-senang ! It's not worth it if you're not having fun.
