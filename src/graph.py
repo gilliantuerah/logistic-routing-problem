@@ -1,5 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+import sys
 from readFile import *
 
 
@@ -155,6 +156,13 @@ def graph(pusat, tujuan):
 
 
 def kurirRute(elabel, pusat, tujuan):
+    # path yang ditempuh dari pusat ke kota tujuan
+    path = []
+    path.append(pusat)
+    # menyimpan semua nodes
+    nodes = []
+    nodes.append(pusat)
+    nodes.extend(tujuan)
     # method ini digunakan untuk menampilkan rute terpendek dari pusat pengiriman ke seluruh tujuan dan kembali lagi ke simpul awal
     # serta menampilkan jarak terpendek dari perjalanan tersebut
     # jumlah jarak/cost yang akan ditempuh
@@ -176,38 +184,59 @@ def kurirRute(elabel, pusat, tujuan):
             G.add_node(el, pos=(float(koor[0]), float(koor[1])))
         else:
             print(str(el)+" bukan merupakan jalanan di kota Oldenburg.")
-    # jarak dari pusat ke tujuan pertama
-    jarak1 = elabel.get((pusat, tujuan[0]))
-    edge = (pusat, tujuan[0])
-    G.add_edge(*edge, weight=round(jarak1, 2))
-    cost += jarak1
-    # iterasi ke seluruh simpul lainnya
-    for i in range(len(tujuan)-1):
-        jarakel = elabel.get((tujuan[i], tujuan[i+1]))
-        jarakel2 = elabel.get((tujuan[i+1], tujuan[i]))
-        edge3 = (tujuan[i], tujuan[i+1])
-        if jarakel:
-            G.add_edge(*edge3, weight=round(jarakel, 2))
-            cost += jarakel
-        elif jarakel2:
-            G.add_edge(*edge3, weight=round(jarakel2, 2))
-            cost += jarakel2
-    # jarak dari simpul terakhir kembali ke pusat
-    jarak2 = elabel.get((pusat, tujuan[len(tujuan)-1]))
-    jarak3 = elabel.get((tujuan[len(tujuan)-1], pusat))
-    edge2 = (tujuan[len(tujuan)-1], pusat)
+
+    # jarak dari pusat terlebih dahulu, cari ke simpul tujuan dengan jarak terpendek
+    # menyimpan jarak terpendek sementara dengan simpul tujuan
+
+    for i in range(len(nodes)-1):
+        # inisiasi nilai minim terlebih dahulu
+        minim = sys.float_info.max
+        kotaMin = nodes[i+1]  # inisiasi kota
+        for j in range(len(nodes)-1):
+            if nodes[j+1] in path:
+                # jika kota tujuan sudah pernah ada dalam path maka abaikan
+                # lanjutkan iterasi
+                continue
+            else:
+
+                jarakMin1 = elabel.get((path[len(path)-1], nodes[j+1]))
+                jarakMin2 = elabel.get((nodes[j+1], path[len(path)-1]))
+                if jarakMin1:
+                    if jarakMin1 < minim:
+                        minim = jarakMin1
+                        kotaMin = nodes[j+1]
+                elif jarakMin2:
+                    if jarakMin2 < minim:
+                        minim = jarakMin2
+                        kotaMin = nodes[j+1]
+        # gambar edge
+        edge = (path[len(path)-1], kotaMin)
+        G.add_edge(*edge, weight=round(minim, 2))
+        # push nodes with minim cost to path
+        path.append(kotaMin)
+        cost += minim
+    # menambahkan cost kembali ke kantor pusat
+    # gambar edge
+    edge = (kotaMin, pusat)
+    jarak2 = elabel.get((pusat, kotaMin))
+    jarak3 = elabel.get((kotaMin, pusat))
     if jarak2:
-        G.add_edge(*edge2, weight=round(jarak2, 2))
+        G.add_edge(*edge, weight=round(jarak2, 2))
         cost += jarak2
     elif jarak3:
-        G.add_edge(*edge2, weight=round(jarak3, 2))
+        G.add_edge(*edge, weight=round(jarak3, 2))
         cost += jarak3
+
+    # push nodes with minim cost to path
+    path.append(pusat)
 
     pos = nx.get_node_attributes(G, 'pos')
     # elabel adalah matriks jarak antar upagraf lengkap
     elabel = nx.get_edge_attributes(G, 'weight')
     # menampilkan jumlah cost
     print("Jumlah cost yang ditempuh adalah "+str(round(cost, 2)))
+    print("Jalur yang dilewati oleh kurir secara terurut adalah : ")
+    print(path)
     nx.draw_networkx_labels(G, pos, font_size=10, font_family='sans-serif')
     nx.draw_networkx_edge_labels(G, pos, edge_labels=elabel)
     nx.draw_networkx_edges(G, pos, edge_color='r')

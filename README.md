@@ -42,7 +42,7 @@ py main.py
 3. Kemudian, ikuti instruksi dari program
 
 ## Pendekatan Algoritma
-Algoritma dibuat dengan menggunakan prinsip backtracking dan rekursif untuk memperoleh jarak terpendek dari simpul satu ke simpul lainnya. Algoritma ini digunakan untuk memperoleh upagraf dan matriks jarak dari beberapa kota tujuan dan kantor pusat terlebih dahulu. Syarat dari algoritma ini adalah tidak boleh ada kota yang terlewati dua kali. Kemudian, untuk penyelesaian mTSP dilakukan iterasi tiap kurir dan kota tujuan yang ingin didatangi. Kemudian jalur diperoleh dengan memanfaatkan matriks jarak upagraf yang telah dibentuk sebelumnya.
+Algoritma dibuat dengan menggunakan prinsip backtracking dan rekursif untuk memperoleh jarak terpendek dari simpul satu ke simpul lainnya. Algoritma ini digunakan untuk memperoleh upagraf dan matriks jarak dari beberapa kota tujuan dan kantor pusat terlebih dahulu. Syarat dari algoritma ini adalah tidak boleh ada kota yang terlewati dua kali. Kemudian, untuk penyelesaian mTSP memanfaatkan matriks jarak upagraf yang diperoleh sebelumnya serta memanfaatkan algoritma **Branch and Bound** dengan mengambil jarak terkecil di setiap langkahnya.
 
 ## Referensi
 Silahkan gunakan referensi berikut sebagai awal pengerjaan tugas:<br>
